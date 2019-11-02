@@ -19,14 +19,6 @@ namespace RestCarsSPA
         public virtual DbSet<Drivers> Drivers { get; set; }
         public virtual DbSet<Orders> Orders { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseSqlServer("Server=DESKTOP-PQ7CV0T\\SQL2017;Database=RestCarsDB;Trusted_Connection=True;");
-            }
-        }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("ProductVersion", "2.2.6-servicing-10079");
@@ -34,7 +26,7 @@ namespace RestCarsSPA
             modelBuilder.Entity<Cars>(entity =>
             {
                 entity.HasKey(e => e.RegistrationNumber)
-                    .HasName("PK__Cars__E8864603C1F5A740");
+                    .HasName("PK__Cars__E8864603E49D0B78");
 
                 entity.Property(e => e.RegistrationNumber)
                     .HasMaxLength(8)
@@ -58,11 +50,7 @@ namespace RestCarsSPA
             modelBuilder.Entity<Drivers>(entity =>
             {
                 entity.HasKey(e => e.NumberDriverLicense)
-                    .HasName("PK__Drivers__9DF713682DF1A949");
-
-                entity.HasIndex(e => e.FullName)
-                    .HasName("UQ__Drivers__89C60F11D289283F")
-                    .IsUnique();
+                    .HasName("PK__Drivers__9DF71368E77132AE");
 
                 entity.Property(e => e.NumberDriverLicense)
                     .HasMaxLength(10)
@@ -70,9 +58,13 @@ namespace RestCarsSPA
 
                 entity.Property(e => e.BirthDate).HasColumnType("date");
 
-                entity.Property(e => e.FullName)
+                entity.Property(e => e.FirstName)
                     .IsRequired()
-                    .HasMaxLength(100);
+                    .HasMaxLength(30);
+
+                entity.Property(e => e.LastName)
+                    .IsRequired()
+                    .HasMaxLength(30);
             });
 
             modelBuilder.Entity<Orders>(entity =>
@@ -90,12 +82,12 @@ namespace RestCarsSPA
                 entity.HasOne(d => d.Car)
                     .WithMany(p => p.Orders)
                     .HasForeignKey(d => d.CarId)
-                    .HasConstraintName("FK__Orders__CarId__3E52440B");
+                    .HasConstraintName("FK__Orders__CarId__3D5E1FD2");
 
                 entity.HasOne(d => d.DriverLicenseNavigation)
                     .WithMany(p => p.Orders)
                     .HasForeignKey(d => d.DriverLicense)
-                    .HasConstraintName("FK__Orders__DriverLi__3D5E1FD2");
+                    .HasConstraintName("FK__Orders__DriverLi__3C69FB99");
             });
         }
     }

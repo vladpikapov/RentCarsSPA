@@ -11,20 +11,20 @@ namespace RestCarsSPA.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class DriversController : ControllerBase
+    public class CarsController : ControllerBase
     {
         private readonly RestCarsDBContext _context;
 
-        public DriversController(RestCarsDBContext context)
+        public CarsController(RestCarsDBContext context)
         {
             _context = context;
         }
 
-        // GET: api/Drivers
+        // GET: api/Cars
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Drivers>>> GetDrivers()
+        public async Task<ActionResult<IEnumerable<Cars>>> GetCars()
         {
-            return await _context.Drivers.ToListAsync();
+            return await _context.Cars.ToListAsync();
         }
 
     }

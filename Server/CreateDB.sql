@@ -3,7 +3,8 @@ use RestCarsDB;
 create table Drivers
 (
 	NumberDriverLicense nvarchar(10) primary key,
-	FullName nvarchar(100) unique not null,
+	FirstName nvarchar(30) not null,
+	LastName nvarchar(30) not null,
 	BirthDate date not null
 	 
 );

@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json.Serialization;
 
 namespace RestCarsSPA
 {
@@ -25,9 +26,16 @@ namespace RestCarsSPA
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            services.AddDbContext<RestCarsDBContext>(option=>
-                option.UseSqlServer("DefaultConnection"));
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2).AddJsonOptions(option =>
+            {
+                var resolver = option.SerializerSettings.ContractResolver;
+                if (resolver != null)
+                {
+                    ((DefaultContractResolver) resolver).NamingStrategy = null;
+                }
+            });
+            services.AddDbContext<RestCarsDBContext>(option =>
+            option.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
