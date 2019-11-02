@@ -1,0 +1,16 @@
+D:\проект курсы\RestCarsSPA\RestCarsSPA\bin\Debug\netcoreapp2.2\appsettings.Development.json
+D:\проект курсы\RestCarsSPA\RestCarsSPA\bin\Debug\netcoreapp2.2\appsettings.json
+D:\проект курсы\RestCarsSPA\RestCarsSPA\bin\Debug\netcoreapp2.2\Properties\launchSettings.json
+D:\проект курсы\RestCarsSPA\RestCarsSPA\bin\Debug\netcoreapp2.2\RestCarsSPA.deps.json
+D:\проект курсы\RestCarsSPA\RestCarsSPA\bin\Debug\netcoreapp2.2\RestCarsSPA.runtimeconfig.json
+D:\проект курсы\RestCarsSPA\RestCarsSPA\bin\Debug\netcoreapp2.2\RestCarsSPA.runtimeconfig.dev.json
+D:\проект курсы\RestCarsSPA\RestCarsSPA\bin\Debug\netcoreapp2.2\RestCarsSPA.dll
+D:\проект курсы\RestCarsSPA\RestCarsSPA\bin\Debug\netcoreapp2.2\RestCarsSPA.pdb
+D:\проект курсы\RestCarsSPA\RestCarsSPA\obj\Debug\netcoreapp2.2\RestCarsSPA.csprojAssemblyReference.cache
+D:\проект курсы\RestCarsSPA\RestCarsSPA\obj\Debug\netcoreapp2.2\RestCarsSPA.RazorAssemblyInfo.cache
+D:\проект курсы\RestCarsSPA\RestCarsSPA\obj\Debug\netcoreapp2.2\RestCarsSPA.RazorAssemblyInfo.cs
+D:\проект курсы\RestCarsSPA\RestCarsSPA\obj\Debug\netcoreapp2.2\RestCarsSPA.AssemblyInfoInputs.cache
+D:\проект курсы\RestCarsSPA\RestCarsSPA\obj\Debug\netcoreapp2.2\RestCarsSPA.AssemblyInfo.cs
+D:\проект курсы\RestCarsSPA\RestCarsSPA\obj\Debug\netcoreapp2.2\RestCarsSPA.RazorTargetAssemblyInfo.cache
+D:\проект курсы\RestCarsSPA\RestCarsSPA\obj\Debug\netcoreapp2.2\RestCarsSPA.dll
+D:\проект курсы\RestCarsSPA\RestCarsSPA\obj\Debug\netcoreapp2.2\RestCarsSPA.pdb
