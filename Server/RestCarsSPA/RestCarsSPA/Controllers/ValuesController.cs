@@ -21,14 +21,13 @@ namespace RestCarsSPA.Controllers
         [HttpGet("{id}")]
         public ActionResult<string> Get(int id)
         {
-            return "value" + id;
+            return "value";
         }
 
         // POST api/values
         [HttpPost]
-        public string Post([FromBody] string value)
+        public void Post([FromBody] string value)
         {
-            return value + "Hello !!))!";
         }
 
         // PUT api/values/5

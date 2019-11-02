@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\проект курсы\\RestCarsSPA\\RestCarsSPA\\RestCarsSPA.csproj": {}
+    "D:\\проект курсы\\RestCarsSPA\\Server\\RestCarsSPA\\RestCarsSPA\\RestCarsSPA.csproj": {}
   },
   "projects": {
-    "D:\\проект курсы\\RestCarsSPA\\RestCarsSPA\\RestCarsSPA.csproj": {
+    "D:\\проект курсы\\RestCarsSPA\\Server\\RestCarsSPA\\RestCarsSPA\\RestCarsSPA.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\проект курсы\\RestCarsSPA\\RestCarsSPA\\RestCarsSPA.csproj",
+        "projectUniqueName": "D:\\проект курсы\\RestCarsSPA\\Server\\RestCarsSPA\\RestCarsSPA\\RestCarsSPA.csproj",
         "projectName": "RestCarsSPA",
-        "projectPath": "D:\\проект курсы\\RestCarsSPA\\RestCarsSPA\\RestCarsSPA.csproj",
+        "projectPath": "D:\\проект курсы\\RestCarsSPA\\Server\\RestCarsSPA\\RestCarsSPA\\RestCarsSPA.csproj",
         "packagesPath": "C:\\Users\\vladnstr\\.nuget\\packages\\",
-        "outputPath": "D:\\проект курсы\\RestCarsSPA\\RestCarsSPA\\obj\\",
+        "outputPath": "D:\\проект курсы\\RestCarsSPA\\Server\\RestCarsSPA\\RestCarsSPA\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",
