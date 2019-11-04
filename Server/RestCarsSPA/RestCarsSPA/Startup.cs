@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
 namespace RestCarsSPA
@@ -33,9 +34,11 @@ namespace RestCarsSPA
                 {
                     ((DefaultContractResolver) resolver).NamingStrategy = null;
                 }
+                option.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             });
             services.AddDbContext<RestCarsDBContext>(option =>
             option.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,7 +49,14 @@ namespace RestCarsSPA
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
+
+            app.UseCors(builder => builder.WithOrigins("http://localhost:4200")
+                .AllowAnyMethod().AllowAnyHeader());
+
             app.UseMvc();
+            
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace RestCarsSPA.BL
@@ -15,37 +16,44 @@ namespace RestCarsSPA.BL
             _context = context;
         }
 
-        public IEnumerable<Orders> GetOrderListByCarModel(string model)
+        public List<Orders> GetOrderListByCarModel(string model)
         {
             var cars = _context.Cars.Where(car => car.Model == model);
             var orders = new List<Orders>();
             foreach (var car in cars)
             {
-                orders.Add(_context.Orders.FirstOrDefault(orderCar => orderCar.CarId == car.RegistrationNumber));
+                car.Orders = null;
+                var currentCar = _context.Orders.Where(orderCar => orderCar.CarId == car.RegistrationNumber);
+                orders.AddRange(currentCar);
+                
             }
 
             return orders;
         }
 
-        public IEnumerable<Orders> GetOrderListByCarMark(string mark)
+        public List<Orders> GetOrderListByCarMark(string mark)
         {
             var cars = _context.Cars.Where(car => car.Mark == mark);
             var orders = new List<Orders>();
             foreach (var car in cars)
             {
-                orders.Add(_context.Orders.FirstOrDefault(orderCar => orderCar.CarId == car.RegistrationNumber));
+                var currentCar = _context.Orders.Where(carNumber => carNumber.CarId == car.RegistrationNumber);
+                orders.AddRange(currentCar);
             }
 
             return orders;
         }
 
-        public IEnumerable<Orders> GetOrderListByDriverName(string name)
+        public List<Orders> GetOrderListByDriverName(string name)
         {
             var drivers = _context.Drivers.Where(driver => driver.FirstName == name);
             var orders = new List<Orders>();
             foreach (var driver in drivers)
             {
-                orders.Add(_context.Orders.FirstOrDefault(orderDriver=>orderDriver.DriverLicense == driver.NumberDriverLicense));
+                var driverOrders =
+                    _context.Orders.Where(license => license.DriverLicense == driver.NumberDriverLicense);
+                orders.AddRange(driverOrders);
+                
             }
 
             return orders;

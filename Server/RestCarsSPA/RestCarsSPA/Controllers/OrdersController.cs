@@ -22,48 +22,37 @@ namespace RestCarsSPA.Controllers
             _context = context;
         }
 
-        // GET: api/Orders
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Orders>>> GetOrders()
+        public async  Task<ActionResult<IEnumerable<Orders>>> GetOrders()
         {
             return await _context.Orders.ToListAsync();
         }
 
-        [HttpGet("{driverName}")]
+        [HttpGet("byDriver/{driverName}")]
         public ActionResult<IEnumerable<Orders>> GetOrdersByDriverName(string driverName)
         {
             var orderMethods = new OrderMethods(_context);
-            return orderMethods.GetOrderListByDriverName(driverName).ToList();
+            return orderMethods.GetOrderListByDriverName(driverName);
         }
 
-
-        [HttpGet("sorts/SortedByStartDate")]
-        public async Task<ActionResult<IEnumerable<Orders>>> GetSortedOrdersByStartDate()
+        [HttpGet("date/startDate/{date}")]
+        public async Task<ActionResult<IEnumerable<Orders>>> GetOrdersByStartDate(string date)
         {
-            return await _context.Orders.OrderByDescending(order => order.StartDate).ToListAsync();
-        }
-
-
-        [HttpGet("sorts/SortedByEndDate")]
-        public async Task<ActionResult<IEnumerable<Orders>>> GetSortedOrdersByEndDate()
-        {
-            return await _context.Orders.OrderByDescending(order => order.EndDate).ToListAsync();
+            return await _context.Orders.Where(order=>order.StartDate == DateTime.Parse(date)).ToListAsync();
         }
 
         [HttpGet("cars/model/{carModel}")]
         public ActionResult<IEnumerable<Orders>> GetOrdersByCarModel(string carModel)
         {
-            var orderMethods = new OrderMethods(_context);
-            var cars = orderMethods.GetOrderListByCarModel(carModel);
-            return cars.ToList();
+            var orderMethods = new OrderMethods(_context); 
+            return orderMethods.GetOrderListByCarModel(carModel);
         }
 
         [HttpGet("cars/mark/{carMark}")]
         public ActionResult<IEnumerable<Orders>> GetOrdersByCarMark(string carMark)
         {
             var orderMethods = new OrderMethods(_context);
-            var cars = orderMethods.GetOrderListByCarMark(carMark);
-            return cars.ToList();
+            return orderMethods.GetOrderListByCarMark(carMark);
         }
 
         [HttpPut("{id}")]
@@ -95,6 +84,13 @@ namespace RestCarsSPA.Controllers
             return RedirectToAction("GetOrders");
         }
 
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Orders>> GetOrders(int id)
+        {
+            var order = await _context.Orders.FindAsync(id);
+            return order ?? (ActionResult<Orders>) NotFound();
+        }
+
         // POST: api/Orders
         [HttpPost]
         public async Task<ActionResult<Orders>> PostOrders(Orders orders)
@@ -110,15 +106,10 @@ namespace RestCarsSPA.Controllers
         public async Task<ActionResult<Orders>> DeleteOrders(int id)
         {
             var orders = await _context.Orders.FindAsync(id);
-            if (orders == null)
-            {
-                return NotFound();
-            }
-
             _context.Orders.Remove(orders);
             await _context.SaveChangesAsync();
 
-            return orders;
+            return RedirectToAction("GetOrders");
         }
 
         private bool OrdersExists(int id)
