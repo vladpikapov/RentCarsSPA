@@ -1,0 +1,20 @@
+<form [formGroup]="addForm" (ngSubmit)="OnSubmit(addForm.value)" style="margin-top: 100px">
+  <div>
+  <input formControlName="DriverLicense" type="text" placeholder="Driver license">
+  </div>
+  <div>
+  <input formControlName="CarId" type="text" placeholder="Car register number" >
+  </div>
+  <div>
+  <input formControlName="Comment" type="text" placeholder="Some comments...">
+  </div>
+  <div>
+  <input formControlName="StartDate" type="date">
+  </div>
+  <div>
+  <input formControlName="EndDate" type="date">
+  </div>
+  <div>
+    <button type="submit" >Submit</button>
+  </div>
+</form>

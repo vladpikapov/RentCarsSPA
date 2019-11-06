@@ -41,6 +41,12 @@ namespace RestCarsSPA.Controllers
             return await _context.Orders.Where(order=>order.StartDate == DateTime.Parse(date)).ToListAsync();
         }
 
+        [HttpGet("date/endDate/{date}")]
+        public async Task<ActionResult<IEnumerable<Orders>>> GetOrdersByEndDate(string date)
+        {
+            return await _context.Orders.Where(order => order.EndDate == DateTime.Parse(date)).ToListAsync();
+        }
+
         [HttpGet("cars/model/{carModel}")]
         public ActionResult<IEnumerable<Orders>> GetOrdersByCarModel(string carModel)
         {
@@ -56,14 +62,14 @@ namespace RestCarsSPA.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutOrders(int id, Orders orders)
+        public async Task<ActionResult<Orders>> PutOrders(int id, Orders order)
         {
-            if (id != orders.Id)
+            if (id != order.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(orders).State = EntityState.Modified;
+            _context.Entry(order).State = EntityState.Modified;
 
             try
             {
@@ -81,7 +87,7 @@ namespace RestCarsSPA.Controllers
                 }
             }
 
-            return RedirectToAction("GetOrders");
+            return order;
         }
 
         [HttpGet("{id}")]
@@ -105,11 +111,11 @@ namespace RestCarsSPA.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<Orders>> DeleteOrders(int id)
         {
-            var orders = await _context.Orders.FindAsync(id);
-            _context.Orders.Remove(orders);
+            var order = await _context.Orders.FindAsync(id);
+            _context.Orders.Remove(order);
             await _context.SaveChangesAsync();
 
-            return RedirectToAction("GetOrders");
+            return order;
         }
 
         private bool OrdersExists(int id)

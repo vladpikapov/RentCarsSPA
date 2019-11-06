@@ -1,1 +1,13 @@
-/* You can add global styles to this file, and also import other style files */
+body,html{
+  height: 100%;
+}
+::-webkit-scrollbar{
+  display: none;
+}
+.bg{
+  background-image: url("https://34travel.me/media/upload/images/2016/october/Road_trip_Sixt/yosemite-5509x3673-5k-wallpapers-forest-osx-apple-mountains-road-3954.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  }
+

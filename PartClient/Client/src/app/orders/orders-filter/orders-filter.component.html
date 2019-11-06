@@ -1,0 +1,52 @@
+<div class="container bg-dark text-light" style="margin-top: 100px">
+  <div class="row">
+    <div>
+    <div>
+    <select #t>
+      <option value="/starDate">by start date</option>
+      <option value="/endDate">by end date</option>
+      <option value="/byDriver">by driver name</option>
+      <option value="/cars/mark">by car mark</option>
+      <option value="/cars/model">by car model</option>
+    </select>
+    </div>
+    <div class="form-group" *ngIf="t.value === '/starDate'">
+      <input   [(ngModel)]="StartDateSearch" type="text" pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}" class="form-control" >
+      <button type="button" (click)="SearchByStartDate()">Search</button>
+
+    </div>
+    <div class="form-group" *ngIf="t.value === '/endDate'">
+      <input  [(ngModel)]="EndDateSearch"  type="text" pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}" class="form-control" >
+      <button type="button" (click)="SearchByEndDate()">Search</button>
+    </div>
+    <div class="form-group" *ngIf="t.value === '/byDriver'">
+      <input  [(ngModel)]="DriverName" type="text" class="form-control" >
+      <button type="button" (click)="SearchByDriverName()">Search</button>
+
+    </div>
+    <div class="form-group" *ngIf="t.value === '/cars/mark'" >
+      <input [(ngModel)]="CarMark" type="text" class="form-control" >
+      <button type="button" (click)="SearchByCarMark()">Search</button>
+
+    </div>
+    <div class="form-group">
+    <div *ngIf="t.value === '/cars/model'" >
+      <input  [(ngModel)]="CarModel" type="text" class="form-control" >
+      <button *ngIf="t.value === 'by car model'" type="button" (click)="SearchByCarModel()">Search</button>
+
+
+    </div>
+      <button type="button" (click)="ResetSearchSettings()">Reset</button>
+    </div>
+    </div>
+    <hr>
+    <div class="form-group">
+      Sort by
+      <select #SortSelect class="form-control" >
+        <option value="start" >Start rent date</option>
+        <option value="end">End rent date</option>
+      </select>
+      <button class="btn btn-info form-control" (click)="SortBy(SortSelect.value)">Sort</button>
+    </div>
+  </div>
+</div>

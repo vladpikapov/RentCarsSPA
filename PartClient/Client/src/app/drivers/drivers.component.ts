@@ -12,7 +12,6 @@ export class DriversComponent implements OnInit {
 
   ngOnInit() {
     this.driversService.fetchDrivers();
-    this.driversService.drivers
     }
   }
 

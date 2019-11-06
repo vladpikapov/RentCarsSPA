@@ -1,8 +1,18 @@
-<table class="table talbe-hover">
-  <tr *ngFor="let driver of driversService.drivers">
-      <td>{{driver.NumberDriverLicense}}</td>
-      <td>{{driver.FirstName}}</td>
-      <td>{{driver.LastName}}</td>
-      <td>{{driver.BirthDate | date:'longDate'}}</td>
-  </tr>
-</table>
+<div class="container" style="margin-top: 60px">
+<div class="row">
+<div *ngFor="let driver of driversService.drivers" class="card m-3" style="width: 14rem;">
+  <img src="http://vodokanal-kostyukovichi.by/assets/images/net_foto.jpg" class="card-img-top">
+  <div class="card-body shadow-md">
+    <h5 class="card-title">{{driver.FirstName}} {{driver.LastName}}</h5>
+    <ul class="card-text" style="list-style: none; padding: 0%">
+      <li>
+        <b>Driver license: </b> {{driver.NumberDriverLicense}}
+      </li>
+      <li>
+        <b>Birth date: </b>{{driver.BirthDate | date:'shortDate'}}
+      </li>
+    </ul>
+  </div>
+</div>
+</div>
+</div>
