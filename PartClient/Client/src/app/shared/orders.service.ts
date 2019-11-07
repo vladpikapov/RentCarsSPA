@@ -43,24 +43,8 @@ export class OrdersService {
     return this.http.put(this.ordersUrl + '/' + Id, order);
   }
 
-  getOrdersByStartDate(startDate: string) {
-    this.http.get(this.ordersUrl + '/date/startDate/' +  startDate).toPromise().then(res => this.orders = res as Orders[]);
-  }
-
-  getOrdersByDriverName(name: string) {
-    this.http.get(this.ordersUrl + '/byDriver/' +  name).toPromise().then(res => this.orders = res as Orders[]);
-  }
-
-  getOrdersByEndDate(endDate: string) {
-    this.http.get(this.ordersUrl + '/date/endDate/' +  endDate).toPromise().then(res => this.orders = res as Orders[]);
-  }
-
-  getOrdersByCarModel(model: string) {
-    this.http.get(this.ordersUrl + '/cars/model/' + model).toPromise().then(res => this.orders = res as Orders[]);
-  }
-
-  getOrdersByCarMark(mark: string) {
-    this.http.get(this.ordersUrl + '/cars/mark/' + mark).toPromise().then(res => this.orders = res as Orders[]);
+  getOrdersBySelectParameter(element: string , url: string) {
+    this.http.get(this.ordersUrl + url + element).toPromise().then(res => this.orders = res as Orders[]);
   }
 
   SortOrdersStartDateAsc(orders: Orders[]) {
@@ -92,7 +76,6 @@ export class OrdersService {
 
       this.SortOrdersStartDateAsc(orders);
     }
-    console.log(this.orders);
     if (this.countSort === 1) {
       this.SortOrdersStartDateDesc(orders);
     }
@@ -131,11 +114,10 @@ export class OrdersService {
   SortOrdersByEndDate(orders: Orders[]) {
     if (this.countSort === 0) {
 
-      this.SortOrdersStartDateAsc(orders);
+      this.SortOrdersEndDateAsc(orders);
     }
-    console.log(this.orders);
     if (this.countSort === 1) {
-      this.SortOrdersStartDateDesc(orders);
+      this.SortOrdersEndDateDesc(orders);
     }
     if (this.countSort === 2) {
       this.getOrders();

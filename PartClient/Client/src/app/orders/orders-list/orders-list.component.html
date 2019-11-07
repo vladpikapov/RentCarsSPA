@@ -1,40 +1,78 @@
-<div class="container" style="margin-top: 50px">
-  <table class="table table-dark table-bordered">
-    <thead>
-      <th >Start rent date</th>
+<div class="container">
+  <div class="row">
+  <table class="table col-12 table-danger table-bordered" style="text-align: center;">
+    <thead class="bg-danger text-light">
+      <th>Start rent date</th>
       <th>End rent date </th>
       <th>Comment</th>
       <th>Driver license</th>
       <th>Car registration number</th>
+      <th></th>
+      <th></th>
     </thead>
     <tr *ngFor="let order of orderService.orders">
-      <td *ngIf="order.Id === EditRowID"><input type="date" value="{{order.StartDate}}" [(ngModel)]="order.StartDate"> </td>
+      <td *ngIf="order.Id === EditRowID"><input class="input-group-text" type="date" value="{{order.StartDate}}" [(ngModel)]="order.StartDate"> </td>
       <td *ngIf="order.Id !== EditRowID" (click)="EditRowID(order.Id)">
         {{order.StartDate | date:'longDate'}}
       </td>
-      <td *ngIf="order.Id === EditRowID"><input type="date" value="{{order.EndDate}}" [(ngModel)]="order.EndDate"> </td>
+      <td *ngIf="order.Id === EditRowID"><input class="input-group-text" type="date" value="{{order.EndDate}}" [(ngModel)]="order.EndDate"> </td>
       <td *ngIf="order.Id !== EditRowID" (click)="EditRowID(order.Id)" >
         {{order.EndDate | date:'longDate'}}
       </td>
-      <td *ngIf="order.Id === EditRowID"><input type="text" [(ngModel)]="order.Comment"> </td>
+      <td *ngIf="order.Id === EditRowID"><input class="input-group-text" type="text" [(ngModel)]="order.Comment"> </td>
       <td *ngIf="order.Id !== EditRowID" (click)="EditRowID(order.Id)">
         {{order.Comment}}
       </td>
-      <td *ngIf="order.Id === EditRowID"><input type="text" [(ngModel)]="order.DriverLicense"> </td>
+      <td *ngIf="order.Id === EditRowID"><input class="input-group-text" type="text" [(ngModel)]="order.DriverLicense"> </td>
       <td *ngIf="order.Id !== EditRowID" (click)="EditRowID(order.Id)">
         {{order.DriverLicense}}
       </td>
-      <td *ngIf="order.Id === EditRowID"><input type="text" [(ngModel)]="order.CarId"> </td>
+      <td *ngIf="order.Id === EditRowID"><input class="input-group-text" type="text" [(ngModel)]="order.CarId"> </td>
       <td *ngIf="order.Id !== EditRowID" (click)="EditRowID(order.Id)">
-        {{order.CarId}}
+       {{order.CarId}}
       </td>
-      <td>
-        <button class="btn btn-danger" (click)="CatchID(order.Id)">X</button>
-      </td>
+    <!--  <td>
+        <button class="btn btn-info" (click)="openModal(order)">More info</button>
+      </td>-->
       <td>
         <button class="btn btn-info" (click)="EditOrder(order)">Edit</button>
       </td>
       <td *ngIf="order.Id === EditRowID"><button class="btn btn-success" (click)="UpdateOrder(order.Id, order)">Save </button> </td>
+      <td>
+        <button class="btn btn-outline-danger" (click)="CatchID(order.Id)">X</button>
+      </td>
     </tr>
   </table>
+  </div>
 </div>
+<!--<div class="backdrop" [ngStyle]="{'display':display}"></div>
+
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display}">
+   <div class="modal-dialog" role="document">
+     <div class="modal-content">
+       <div class="modal-header">
+         <h4 class="modal-title">Driver info</h4>
+       </div>
+       <div class="modal-body" >
+  <p style="text-align: center"><b>Driver and car info</b></p>
+        <ul>
+                 <li ><b>Driver name: </b>{{this.OrderDriverInfo.FirstName}}</li>
+                 <li ><b>Driver surname: </b>{{this.OrderDriverInfo.LastName}}</li>
+                 <li ><b>Driver birth date: </b>{{this.OrderDriverInfo.BirthDate | date:'longDate'}}</li>
+                 <li ><b>Driver license: </b>{{this.OrderDriverInfo.NumberDriverLicense}}</li>
+        </ul>
+  <p style="text-align: center"><b>Car info</b></p>
+  <ul>
+           <li ><b>Car registration number: </b>{{this.OrderCarInfo.RegistrationNumber}}</li>
+           <li ><b>Car mark: </b>{{this.OrderCarInfo.Mark}}</li>
+           <li ><b>Car model: </b>{{this.OrderCarInfo.Model}}</li>
+           <li ><b>Year os issue: </b>{{this.OrderCarInfo.YearOfIssue | date:'y'}}</li>
+  </ul>
+       </div>
+       <div class="modal-footer">
+         <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+       </div>
+     </div>
+   </div>
+</div>-->
+

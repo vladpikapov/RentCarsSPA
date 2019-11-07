@@ -30,3 +30,18 @@ create table Orders
 );
 alter table Orders add constraint
 BadDate check(EndDate>StartDate);
+
+insert into Drivers
+values('4756932612','Ivan','Ivanov','1987-07-23'),
+('3583713261','Petr','Petrov','1992-12-21'),
+('2364271852','Roman','Butko','1996-02-03'),
+('1957328943','Egor','Romashkin','2000-11-17'),
+('1230543575','Elena','Bertosh','1975-02-07'),
+('7328128496','Maxim','Maximov','1981-11-11');
+
+insert into Cars
+values(N'3211¿¬-2','BMW','X6','J','2019-01-01'),
+(N'4212 Õ-3','Audi','A8','F','2018-01-01'),
+(N'1321ÃÕ-1','Ford','Mondeo','D','2007-01-01'),
+(N'1111¿ -7','Mersedes-Bebz','AMG GT','E','2014-01-01'),
+(N'3333¿Õ-5','Skoda','Octavia','C','2013-01-01');

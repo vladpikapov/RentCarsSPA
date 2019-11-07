@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {OrdersService, Orders} from '../../shared/orders.service';
 import {Sort} from '@angular/material';
+import {Cars, CarsService} from '../../shared/cars.service';
+import {Drivers, DriversService} from '../../shared/drivers.service';
 
 @Component({
   selector: 'app-orders-list',
@@ -9,7 +11,13 @@ import {Sort} from '@angular/material';
 })
 export class OrdersListComponent implements OnInit {
   EditRowID: any = '';
-  constructor(private orderService: OrdersService) {
+  OrderDriverInfo: Drivers;
+  OrderCarInfo: Cars;
+  display = 'none';
+
+  constructor(private orderService: OrdersService, private carsService: CarsService, private  driverService: DriversService) {
+    this.driverService.fetchDrivers();
+    this.carsService.getCars();
   }
 
   ngOnInit() {
@@ -45,4 +53,13 @@ export class OrdersListComponent implements OnInit {
   SortData(sort: Sort) {
     this.orderService.orders.sort();
   }
+
+  onCloseHandled() {
+    this.display = 'none';
   }
+  openModal(order: Orders) {
+    this.OrderDriverInfo = this.driverService.drivers.find(x => x.NumberDriverLicense === order.DriverLicense);
+    this.OrderCarInfo = this.carsService.cars.find(x => x.RegistrationNumber === order.CarId);
+    this.display = 'block';
+  }
+}

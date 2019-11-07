@@ -8,50 +8,26 @@ import {OrdersListComponent} from '../orders-list/orders-list.component';
   styleUrls: ['./orders-filter.component.css']
 })
 export class OrdersFilterComponent implements OnInit {
-  CarMark;
-  CarModel;
-  DriverName;
-  StartDateSearch;
-  EndDateSearch;
+  SelectParameter;
   constructor(private orderService: OrdersService) {
   }
 
   ngOnInit() {
   }
 
-  SearchByCarMark() {
-   this.orderService.getOrdersByCarMark(this.CarMark);
-  }
-
-  SearchByCarModel() {
-    this.orderService.getOrdersByCarModel(this.CarModel);
-  }
-
-  SearchByDriverName() {
-    this.orderService.getOrdersByDriverName(this.DriverName);
-  }
-
-  SearchByEndDate() {
-    this.orderService.getOrdersByEndDate(this.EndDateSearch);
-  }
-
-  SearchByStartDate() {
-    this.orderService.getOrdersByStartDate(this.StartDateSearch);
+  SearchBySelectParameter(element: string, url: string) {
+    this.orderService.getOrdersBySelectParameter(element, url);
   }
 
   ResetSearchSettings() {
     this.orderService.getOrders();
-    this.CarMark = null;
-    this.CarModel = null;
-    this.DriverName = null;
-    this.StartDateSearch = null;
-    this.EndDateSearch = null;
+    this.SelectParameter = null;
   }
 
   SortBy(value: any) {
     if (value === 'start') {
       this.orderService.SortOrdersByStartDate(this.orderService.orders);
-    } else {
+    } if (value === 'end') {
       this.orderService.SortOrdersByEndDate(this.orderService.orders);
     }
   }

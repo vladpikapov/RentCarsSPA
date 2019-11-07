@@ -14,8 +14,6 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { OrdersFilterComponent } from './orders/orders-filter/orders-filter.component';
 
 const appRoutes: Routes = [
-  {path: 'cars', component: CarsComponent},
-  {path: 'drivers', component: DriversComponent },
   {path: '', component: OrdersComponent}
 ];
 
