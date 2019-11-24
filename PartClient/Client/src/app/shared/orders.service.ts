@@ -3,6 +3,8 @@ import {HttpClient} from '@angular/common/http';
 import {OrdersAddComponent} from '../orders/orders-add/orders-add.component';
 import {FormGroup, NgForm} from '@angular/forms';
 import {Observable} from 'rxjs';
+import {Cars} from './cars.service';
+import {Drivers} from './drivers.service';
 
 export interface Orders {
   Id: number;
@@ -11,6 +13,8 @@ export interface Orders {
   Comment: string;
   DriverLicense: string;
   CarId: string;
+  Car: Cars;
+  Driver: Drivers;
 }
 
 @Injectable ({providedIn: 'root'})
@@ -18,7 +22,6 @@ export class OrdersService {
 
   public ordersUrl = 'http://localhost:62131/api/orders';
   public orders: Orders[];
-  public order: Orders;
   countSort = 0;
   constructor(private http: HttpClient) {
     this.getOrders();

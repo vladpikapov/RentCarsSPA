@@ -46,7 +46,7 @@ namespace RestCarsSPA.BL
 
         public List<Orders> GetOrderListByDriverName(string name)
         {
-            var drivers = _context.Drivers.Where(driver => driver.FirstName == name);
+            var drivers = _context.Drivers.Where(driver => driver.FirstName == name || driver.LastName == name || name.Equals(driver.FirstName+" "+driver.LastName));
             var orders = new List<Orders>();
             foreach (var driver in drivers)
             {

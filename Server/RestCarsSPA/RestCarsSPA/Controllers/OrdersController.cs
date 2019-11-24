@@ -25,7 +25,7 @@ namespace RestCarsSPA.Controllers
         [HttpGet]
         public async  Task<ActionResult<IEnumerable<Orders>>> GetOrders()
         {
-            return await _context.Orders.ToListAsync();
+            return await _context.Orders.Include(d=>d.Driver).Include(c=>c.Car).ToListAsync();
         }
 
         [HttpGet("byDriver/{driverName}")]
@@ -99,12 +99,12 @@ namespace RestCarsSPA.Controllers
 
         // POST: api/Orders
         [HttpPost]
-        public async Task<ActionResult<Orders>> PostOrders(Orders orders)
+        public async Task<ActionResult<Orders>> PostOrders(Orders order)
         {
-            _context.Orders.Add(orders);
+            _context.Orders.Add(order);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetOrders", new { id = orders.Id }, orders);
+            return CreatedAtAction("GetOrders", new { id = order.Id }, order);
         }
 
         // DELETE: api/Orders/5

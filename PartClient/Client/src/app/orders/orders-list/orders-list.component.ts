@@ -10,14 +10,10 @@ import {Drivers, DriversService} from '../../shared/drivers.service';
   styleUrls: ['./orders-list.component.css']
 })
 export class OrdersListComponent implements OnInit {
-  EditRowID: any = '';
-  OrderDriverInfo: Drivers;
-  OrderCarInfo: Cars;
+  EditRowID: any = null;
   display = 'none';
 
-  constructor(private orderService: OrdersService, private carsService: CarsService, private  driverService: DriversService) {
-    this.driverService.fetchDrivers();
-    this.carsService.getCars();
+  constructor(private orderService: OrdersService) {
   }
 
   ngOnInit() {
@@ -58,8 +54,7 @@ export class OrdersListComponent implements OnInit {
     this.display = 'none';
   }
   openModal(order: Orders) {
-    this.OrderDriverInfo = this.driverService.drivers.find(x => x.NumberDriverLicense === order.DriverLicense);
-    this.OrderCarInfo = this.carsService.cars.find(x => x.RegistrationNumber === order.CarId);
+
     this.display = 'block';
   }
 }

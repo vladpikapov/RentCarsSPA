@@ -84,7 +84,7 @@ namespace RestCarsSPA
                     .HasForeignKey(d => d.CarId)
                     .HasConstraintName("FK__Orders__CarId__3D5E1FD2");
 
-                entity.HasOne(d => d.DriverLicenseNavigation)
+                entity.HasOne(d => d.Driver)
                     .WithMany(p => p.Orders)
                     .HasForeignKey(d => d.DriverLicense)
                     .HasConstraintName("FK__Orders__DriverLi__3C69FB99");

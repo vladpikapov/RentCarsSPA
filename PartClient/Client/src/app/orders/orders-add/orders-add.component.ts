@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Orders, OrdersService} from '../../shared/orders.service';
-import {FormGroup, NgForm, FormBuilder} from '@angular/forms';
+import {FormGroup, NgForm, FormBuilder, Validators} from '@angular/forms';
 
 
 // @ts-ignore
@@ -14,20 +14,18 @@ export class OrdersAddComponent implements OnInit {
   constructor(private ordersService: OrdersService, private  formBuilder: FormBuilder) { }
   ngOnInit() {
     this.addForm = this.formBuilder.group({
-      StartDate: [''],
-      EndDate: [''],
+      StartDate: ['', Validators.required],
+      EndDate: ['', Validators.required ],
       Comment: [''],
-      DriverLicense: [''],
-      CarId: [''],
+      DriverLicense: ['', Validators.required ],
+      CarId: ['', Validators.required ],
       Car: null,
       DriverLicenseNavigation: null
     });
   }
-
-  OnSubmit(value: any) {
+   OnSubmit(value: any) {
     this.ordersService.postOrders(value).subscribe(
       res => {
-        console.log('Submitted successfully');
         this.ordersService.getOrders();
       },
       err => {

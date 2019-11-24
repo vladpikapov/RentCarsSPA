@@ -1,6 +1,4 @@
-<div class="container " style="padding-top: 100px;" >
-    <div style="text-align: center;margin-bottom: 30px"><h3>Add order</h3>
-    </div>
+<div class="container bg-danger text-light" style="margin-top: 100px;" >
   <div class="row border pt-2">
     <div class="col-4">
 <form [formGroup]="addForm" (ngSubmit)="OnSubmit(addForm.value)" style="width: 250px;" class="form-group">
@@ -25,7 +23,7 @@
   <input class="form-control mb-1" formControlName="EndDate" type="date">
   </div>
   <div style="text-align: center" class="mt-2">
-    <button class="btn btn-success" type="submit" >Submit</button>
+    <button class="btn btn-success" type="submit" >Add</button>
   </div>
 </form>
     </div>

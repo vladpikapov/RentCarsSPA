@@ -12,7 +12,7 @@ namespace RestCarsSPA
         public string DriverLicense { get; set; }
         public string CarId { get; set; }
 
-        public virtual Cars Car { get; set; }
-        public virtual Drivers DriverLicenseNavigation { get; set; }
+        public  Cars Car { get; set; }
+        public  Drivers Driver { get; set; }
     }
 }
